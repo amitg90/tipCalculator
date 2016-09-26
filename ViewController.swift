@@ -16,22 +16,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var segmentSelector: UISegmentedControl!
     
     var tipPercentage = [0.1, 0.18, 0.22]
+    var defaultTipPercent: Double = 0.1
+    var defaultSegmentID: Int = 0
+    
+    func readDefaultTipFromUserDefaults() {
+        // read default tip percentage
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaultSegmentID = defaults.integerForKey("userTipDefault")
+        segmentSelector.selectedSegmentIndex = defaultSegmentID
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view, typically from a nib.
         textChange.text = ""
         tipText.text    = String(format: "$%.2f", 0.0)
         totalText.text  = String(format: "$%.2f", 0.0)
+        
+        // read default tip to select
+        readDefaultTipFromUserDefaults()
     }
     
     @IBAction func tapGesture(sender: AnyObject) {
         view.endEditing(true)
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func billAmitChanged(sender: AnyObject) {
