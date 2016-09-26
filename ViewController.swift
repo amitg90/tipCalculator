@@ -38,11 +38,7 @@ class ViewController: UIViewController {
         readDefaultTipFromUserDefaults()
     }
     
-    @IBAction func tapGesture(sender: AnyObject) {
-        view.endEditing(true)
-    }
-    
-    @IBAction func billAmitChanged(sender: AnyObject) {
+    func calculateTip() {
         let billAmt = Double(textChange.text!) ?? 0
         let tip = Double(billAmt) * tipPercentage[segmentSelector.selectedSegmentIndex]
         let total = billAmt + tip
@@ -50,7 +46,19 @@ class ViewController: UIViewController {
         tipText.text    = String(format: "$%.2f", tip)
         totalText.text  = String(format: "$%.2f", total)
     }
-
-
+    
+    override func viewWillAppear(animated: Bool) {
+        readDefaultTipFromUserDefaults()
+        
+        calculateTip()
+    }
+    
+    @IBAction func tapGesture(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    @IBAction func billAmitChanged(sender: AnyObject) {
+        calculateTip()
+    }
 }
 
