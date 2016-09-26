@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         
         // read default tip to select
         readDefaultTipFromUserDefaults()
+        
+        textChange.becomeFirstResponder()
     }
     
     func calculateTip() {

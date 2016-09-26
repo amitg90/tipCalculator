@@ -29,6 +29,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="billAmitChanged:" destination="dkx-z0-nzr" eventType="editingDidEnd" id="2QD-jb-wGu"/>
                                     <action selector="billAmitChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="epl-Q6-mqA"/>
                                 </connections>
                             </textField>
